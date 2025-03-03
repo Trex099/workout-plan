@@ -19,10 +19,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Workout Data Structure
+// 🔹 Use Firestore Instead of Local Storage
 let workoutData = {};
 
-// Function to Load Data from Firestore in Real-Time
+// ✅ Load Workout Data from Firestore in Real-Time
 function loadWorkoutData() {
     const user = auth.currentUser;
     if (user) {
@@ -31,12 +31,14 @@ function loadWorkoutData() {
             if (docSnap.exists()) {
                 workoutData = docSnap.data();
                 renderAllDays(); // Update UI with Firestore data
+            } else {
+                console.log("No saved workout found.");
             }
         });
     }
 }
 
-// Function to Save Workout Data to Firestore
+// ✅ Save Workout Data to Firestore
 async function saveWorkoutData() {
     const user = auth.currentUser;
     if (user) {
@@ -47,22 +49,22 @@ async function saveWorkoutData() {
     }
 }
 
-// Function to Render All Days
+// 🔹 Function to Render Workouts from Firestore
 function renderAllDays() {
     ["monday", "tuesday", "thursday", "friday"].forEach(renderExercises);
 }
 
-// Listen for Authentication State Changes
+// ✅ Listen for Login & Load Data
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("User logged in:", user.email);
-        loadWorkoutData(); // Load workout plan from Firestore
+        loadWorkoutData();
     } else {
-        console.log("No user logged in");
+        console.log("No user logged in.");
     }
 });
 
-// Event Listener for "Save" Button
+// ✅ Hook "Save Plan" Button to Firestore Save
 document.getElementById("save-data").addEventListener("click", () => {
     saveWorkoutData();
 });
