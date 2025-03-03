@@ -2,7 +2,7 @@
 <html lang="en">
 <head>   
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Workout Plan</title>
     <style>
         :root {
@@ -26,34 +26,35 @@
             color: var(--dark);
             line-height: 1.6;
             padding-bottom: 40px;
+            font-size: 16px;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
 
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
             border-radius: 8px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 8px;
             font-weight: 700;
         }
 
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -62,14 +63,15 @@
         .tab-button {
             background: var(--light);
             border: none;
-            padding: 15px 25px;
+            padding: 12px 20px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             flex-grow: 1;
             transition: all 0.3s ease;
             color: var(--dark);
             border-bottom: 3px solid transparent;
+            min-height: 48px;
         }
 
         .tab-button:hover {
@@ -85,37 +87,31 @@
         .tab-content {
             display: none;
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            animation: fadeIn 0.5s ease-in-out;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         h2 {
-            font-size: 1.75rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             color: var(--primary);
             border-bottom: 2px solid var(--light);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .exercise-card {
             background: white;
             border-radius: 8px;
-            margin-bottom: 15px;
-            padding: 15px;
+            margin-bottom: 10px;
+            padding: 12px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border-left: 4px solid var(--secondary);
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .exercise-card:hover {
@@ -129,7 +125,8 @@
             align-items: center;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            min-height: 48px;
         }
 
         .exercise-name {
@@ -139,7 +136,7 @@
             border: none;
             background: transparent;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--dark);
             font-family: inherit;
         }
@@ -168,22 +165,8 @@
             display: flex;
             align-items: center;
             margin-bottom: 8px;
+            flex-wrap: wrap;
         }
-
-        .exercise-data:last-child {
-            margin-bottom: 0;
-        }
-
-        .exercise-data input {
-    width: auto;
-    min-width: 60px;
-    max-width: 100%;
-    padding: 4px 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-right: 5px;
-    text-align: center;
-}
 
         .exercise-data label {
             width: 50px;
@@ -192,10 +175,12 @@
 
         .exercise-data input {
             width: 60px;
-            padding: 4px 8px;
+            padding: 6px 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             margin-right: 5px;
+            font-size: 14px;
+            min-height: 36px;
         }
 
         .exercise-data span {
@@ -218,13 +203,16 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 15px 0;
+            overflow-x: auto;
+            display: block;
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 10px 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            font-size: 14px;
         }
 
         th {
@@ -237,17 +225,18 @@
         }
 
         .progress-heading {
-            margin-top: 40px;
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .button {
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
@@ -255,6 +244,7 @@
             align-items: center;
             gap: 6px;
             transition: all 0.3s ease;
+            min-height: 48px;
         }
 
         .button:hover {
@@ -272,15 +262,16 @@
 
         .add-exercise {
             display: block;
-            margin: 20px auto;
+            margin: 15px auto;
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            min-height: 48px;
         }
 
         .add-exercise:hover {
@@ -295,8 +286,9 @@
 
         .delete-exercise {
             background-color: var(--accent);
-            padding: 4px 8px;
+            padding: 6px 12px;
             font-size: 12px;
+            min-height: 36px;
         }
 
         .delete-exercise:hover {
@@ -315,50 +307,41 @@
             background-color: #f8f9fa;
         }
 
-        @media print {
-            body {
-                background: white;
-            }
-
-            .container {
-                max-width: 100%;
-                padding: 0;
-            }
-
-            .tabs, .tab-button, .button, .actions, .add-exercise {
-                display: none;
-            }
-
-            .tab-content {
-                display: block !important;
-                box-shadow: none;
-                padding: 0;
-            }
-
-            header {
-                background: none;
-                color: black;
-                padding: 20px 0;
-                box-shadow: none;
-            }
-
-            .exercise-name, .editable {
-                border: none;
-            }
+        @media (max-width: 768px) {
+            body { font-size: 14px; }
+            .container { padding: 10px; }
+            header { padding: 20px 10px; }
+            h1 { font-size: 1.75rem; }
+            .tabs { flex-direction: column; }
+            .tab-button { padding: 10px; font-size: 13px; border-bottom: 1px solid #ddd; }
+            .tab-button.active { border-bottom: 3px solid var(--secondary); }
+            .tab-content { padding: 15px; }
+            h2 { font-size: 1.25rem; }
+            .exercise-card { padding: 10px; }
+            .exercise-title { font-size: 0.9rem; }
+            .exercise-data { flex-direction: column; align-items: flex-start; }
+            .exercise-data label { width: 100%; margin-bottom: 5px; }
+            .exercise-data input { width: 100%; max-width: 100px; margin-bottom: 5px; }
+            .progress-heading { flex-direction: column; align-items: flex-start; }
+            .button-group { margin-top: 10px; display: flex; gap: 10px; }
+            table { font-size: 12px; }
+            th, td { padding: 8px 10px; }
         }
 
-        @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
-            }
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .tab-button { font-size: 12px; }
+            .exercise-title { font-size: 0.85rem; }
+            .button, .add-exercise, .delete-exercise { font-size: 13px; }
+        }
 
-            .tab-button {
-                border-bottom: 1px solid #ddd;
-            }
-
-            .tab-button.active {
-                border-bottom: 1px solid var(--secondary);
-            }
+        @media print {
+            body { background: white; }
+            .container { max-width: 100%; padding: 0; }
+            .tabs, .tab-button, .button, .actions, .add-exercise { display: none; }
+            .tab-content { display: block !important; box-shadow: none; padding: 0; }
+            header { background: none; color: black; padding: 20px 0; box-shadow: none; }
+            .exercise-name, .editable { border: none; }
         }
     </style>
 </head>
@@ -374,38 +357,30 @@
             <button class="tab-button" data-tab="tuesday">Tuesday</button>
             <button class="tab-button" data-tab="thursday">Thursday</button>
             <button class="tab-button" data-tab="friday">Friday</button>
-            <button class="tab-button" data-tab="progress">Progress Tracking</button>
+            <button class="tab-button" data-tab="progress">Progress</button>
         </div>
 
         <div id="monday" class="tab-content active">
             <h2 contenteditable="true">Monday – Upper Body (2 Sets Each)</h2>
-            <div id="monday-exercises" class="exercises-container">
-                <!-- Exercises will be loaded here -->
-            </div>
+            <div id="monday-exercises" class="exercises-container"></div>
             <button class="add-exercise" data-day="monday">Add Exercise</button>
         </div>
 
         <div id="tuesday" class="tab-content">
             <h2 contenteditable="true">Tuesday – Leg Day (1 Max Effort Set Each)</h2>
-            <div id="tuesday-exercises" class="exercises-container">
-                <!-- Exercises will be loaded here -->
-            </div>
+            <div id="tuesday-exercises" class="exercises-container"></div>
             <button class="add-exercise" data-day="tuesday">Add Exercise</button>
         </div>
 
         <div id="thursday" class="tab-content">
             <h2 contenteditable="true">Thursday – Upper Body (2 Sets Each)</h2>
-            <div id="thursday-exercises" class="exercises-container">
-                <!-- Exercises will be loaded here -->
-            </div>
+            <div id="thursday-exercises" class="exercises-container"></div>
             <button class="add-exercise" data-day="thursday">Add Exercise</button>
         </div>
 
         <div id="friday" class="tab-content">
             <h2 contenteditable="true">Friday – Leg Day (Same as Tuesday, 1 Max Effort Set Each)</h2>
-            <div id="friday-exercises" class="exercises-container">
-                <!-- Exercises will be loaded here -->
-            </div>
+            <div id="friday-exercises" class="exercises-container"></div>
             <button class="add-exercise" data-day="friday">Add Exercise</button>
         </div>
 
@@ -431,24 +406,20 @@
                     </button>
                 </div>
             </div>
-
             <table id="progress-table">
                 <thead>
                     <tr>
                         <th>Exercise</th>
-                        <th>Set 1 (Weight x Reps)</th>
-                        <th>Set 2 (Weight x Reps)</th>
+                        <th>Set 1</th>
+                        <th>Set 2</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Progress data will be populated here -->
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>
 
     <script>
-        // Workout data structure
         let workoutData = {
             monday: [
                 {
@@ -702,11 +673,9 @@
             ]
         };
 
-        // Function to create exercise card
         function createExerciseCard(exercise, index, day) {
             const highlightClass = exercise.highlight ? 'highlight' : '';
             const checkmarkHtml = exercise.checkmark ? `<span class="checkmark">✅</span>` : '';
-
             let setsHtml = '';
             for (let i = 0; i < exercise.sets.length; i++) {
                 setsHtml += `
@@ -748,148 +717,73 @@
             return card;
         }
 
-        // Function to render exercises for a specific day
         function renderExercises(day) {
             const container = document.getElementById(`${day}-exercises`);
             container.innerHTML = '';
-
             workoutData[day].forEach((exercise, index) => {
                 const card = createExerciseCard(exercise, index, day);
                 container.appendChild(card);
             });
         }
 
-        // Function to update progress table
         function updateProgressTable() {
             const tbody = document.querySelector('#progress-table tbody');
             tbody.innerHTML = '';
-
-            // Add day headers and exercises for each day
             Object.keys(workoutData).forEach(day => {
-                // Create day header
                 const dayHeader = document.createElement('tr');
-                dayHeader.innerHTML = `<td colspan="3" style="background-color: #f5f7fa; font-weight: 600;">${day.charAt(0).toUpperCase() + day.slice(1)} - ${document.querySelector(`#${day} h2`).textContent}</td>`;
+                dayHeader.innerHTML = `<td colspan="3" style="background-color: #f5f7fa; font-weight: 600;">${day.charAt(0).toUpperCase() + day.slice(1)}</td>`;
                 tbody.appendChild(dayHeader);
 
-                // Add exercises
                 workoutData[day].forEach(exercise => {
                     const row = document.createElement('tr');
                     let set1 = exercise.sets[0] ? `${exercise.sets[0].weight} x ${exercise.sets[0].reps}` : 'N/A';
                     let set2 = exercise.sets[1] ? `${exercise.sets[1].weight} x ${exercise.sets[1].reps}` : 'N/A';
-
-                    row.innerHTML = `
-                        <td>${exercise.name}</td>
-                        <td>${set1}</td>
-                        <td>${set2}</td>
-                    `;
+                    row.innerHTML = `<td>${exercise.name}</td><td>${set1}</td><td>${set2}</td>`;
                     tbody.appendChild(row);
                 });
             });
         }
 
-        // Initialize the page
         function init() {
-            // Load from localStorage if available
             const savedData = localStorage.getItem('workoutData');
-            if (savedData) {
-                workoutData = JSON.parse(savedData);
-            }
-
-            // Render exercises for each day
+            if (savedData) workoutData = JSON.parse(savedData);
             renderExercises('monday');
             renderExercises('tuesday');
             renderExercises('thursday');
             renderExercises('friday');
             updateProgressTable();
-
-
-            // Render exercises for each day
-            renderExercises('monday');
-            renderExercises('tuesday');
-            renderExercises('thursday');
-            renderExercises('friday');
-            updateProgressTable();
-
-            // Set up event listeners
             setupEventListeners();
         }
 
-        // Set up event listeners
         function setupEventListeners() {
-            // Tab functionality
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-
-                    // Hide all tab contents
-                    document.querySelectorAll('.tab-content').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-
-                    // Deactivate all buttons
-                    document.querySelectorAll('.tab-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-
-                    // Show the selected tab content
-                    document.getElementById(tabId).classList.add('active');
-
-                    // Activate the clicked button
+                    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    document.getElementById(button.getAttribute('data-tab')).classList.add('active');
                     button.classList.add('active');
                 });
             });
 
-            // Save Data
-            document.getElementById('save-data').addEventListener('click', function() {
+            document.getElementById('save-data').addEventListener('click', () => {
                 localStorage.setItem('workoutData', JSON.stringify(workoutData));
-                alert('Workout plan saved successfully!');
+                alert('Workout plan saved!');
             });
 
-            // Add exercise buttons
             document.querySelectorAll('.add-exercise').forEach(button => {
-                button.addEventListener('click', function() {
-                    const day = this.getAttribute('data-day');
-                    workoutData[day].push({
-                        name: "New Exercise",
-                        highlight: false,
-                        checkmark: false,
-                        sets: [
-                            { weight: "0", reps: "0" },
-                            { weight: "0", reps: "0" }
-                        ]
-                    });
+                button.addEventListener('click', () => {
+                    const day = button.getAttribute('data-day');
+                    workoutData[day].push({ name: "New Exercise", highlight: false, checkmark: false, sets: [{ weight: "0", reps: "0" }, { weight: "0", reps: "0" }] });
                     renderExercises(day);
                     updateProgressTable();
                 });
             });
 
-
-            // Add exercise buttons
-            document.querySelectorAll('.add-exercise').forEach(button => {
-                button.addEventListener('click', function() {
-                    const day = this.getAttribute('data-day');
-                    workoutData[day].push({
-                        name: "New Exercise",
-                        highlight: false,
-                        checkmark: false,
-                        sets: [
-                            { weight: "0", reps: "0" },
-                            { weight: "0", reps: "0" }
-                        ]
-                    });
-                    renderExercises(day);
-                    updateProgressTable();
-                });
-            });
-
-            // Setup event delegation for all dynamic elements
-            document.addEventListener('click', function(e) {
-                // Delete exercise
+            document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('delete-exercise')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
-
-                    if (confirm('Are you sure you want to delete this exercise?')) {
+                    if (confirm('Delete this exercise?')) {
                         workoutData[day].splice(index, 1);
                         renderExercises(day);
                         updateProgressTable();
@@ -897,22 +791,19 @@
                 }
             });
 
-            // Handle input changes for exercise names
-            document.addEventListener('change', function(e) {
+            document.addEventListener('change', (e) => {
                 if (e.target.classList.contains('exercise-name')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
                     workoutData[day][index].name = e.target.value;
                     updateProgressTable();
-                }
-                else if (e.target.classList.contains('weight-input')) {
+                } else if (e.target.classList.contains('weight-input')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
                     const setIndex = parseInt(e.target.getAttribute('data-set'));
                     workoutData[day][index].sets[setIndex].weight = e.target.value;
                     updateProgressTable();
-                }
-                else if (e.target.classList.contains('reps-input')) {
+                } else if (e.target.classList.contains('reps-input')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
                     const setIndex = parseInt(e.target.getAttribute('data-set'));
@@ -921,34 +812,12 @@
                 }
             });
 
-            // Handle contenteditable changes for day titles
             document.querySelectorAll('[contenteditable="true"]').forEach(element => {
-                element.addEventListener('blur', function() {
-                    updateProgressTable();
-                });
+                element.addEventListener('blur', updateProgressTable);
             });
         }
 
-        // Initialize the app when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
-
-        // Function to adjust input width dynamically
-function adjustInputWidth(input) {
-    input.style.width = "auto"; // Reset width to auto
-    input.style.width = (input.scrollWidth) + "px"; // Set width based on content
-}
-
-// Apply resizing when typing
-document.addEventListener("input", function(e) {
-    if (e.target.classList.contains("weight-input") || e.target.classList.contains("reps-input")) {
-        adjustInputWidth(e.target);
-    }
-});
-
-
-
     </script>
-        <script type="module" src="script.js"></script>
-    
 </body>
 </html>
