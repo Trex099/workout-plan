@@ -307,6 +307,20 @@
             background-color: #f8f9fa;
         }
 
+        .progress-exercise-name, .progress-weight, .progress-reps {
+            width: 100%;
+            padding: 4px 6px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 14px;
+            background: transparent;
+        }
+
+        .progress-exercise-name:focus, .progress-weight:focus, .progress-reps:focus {
+            border-color: var(--secondary);
+            background-color: #f8f9fa;
+        }
+
         @media (max-width: 768px) {
             body { font-size: 14px; }
             .container { padding: 10px; }
@@ -326,6 +340,7 @@
             .button-group { margin-top: 10px; display: flex; gap: 10px; }
             table { font-size: 12px; }
             th, td { padding: 8px 10px; }
+            .progress-exercise-name, .progress-weight, .progress-reps { font-size: 12px; padding: 3px 5px; }
         }
 
         @media (max-width: 480px) {
@@ -734,11 +749,21 @@
                 dayHeader.innerHTML = `<td colspan="3" style="background-color: #f5f7fa; font-weight: 600;">${day.charAt(0).toUpperCase() + day.slice(1)}</td>`;
                 tbody.appendChild(dayHeader);
 
-                workoutData[day].forEach(exercise => {
+                workoutData[day].forEach((exercise, index) => {
                     const row = document.createElement('tr');
-                    let set1 = exercise.sets[0] ? `${exercise.sets[0].weight} x ${exercise.sets[0].reps}` : 'N/A';
-                    let set2 = exercise.sets[1] ? `${exercise.sets[1].weight} x ${exercise.sets[1].reps}` : 'N/A';
-                    row.innerHTML = `<td>${exercise.name}</td><td>${set1}</td><td>${set2}</td>`;
+                    const set1 = exercise.sets[0] || { weight: "N/A", reps: "N/A" };
+                    const set2 = exercise.sets[1] || { weight: "N/A", reps: "N/A" };
+                    row.innerHTML = `
+                        <td><input type="text" class="progress-exercise-name editable" value="${exercise.name}" data-day="${day}" data-index="${index}"></td>
+                        <td>
+                            <input type="text" class="progress-weight editable" value="${set1.weight}" data-day="${day}" data-index="${index}" data-set="0"> x 
+                            <input type="text" class="progress-reps editable" value="${set1.reps}" data-day="${day}" data-index="${index}" data-set="0">
+                        </td>
+                        <td>
+                            <input type="text" class="progress-weight editable" value="${set2.weight}" data-day="${day}" data-index="${index}" data-set="1"> x 
+                            <input type="text" class="progress-reps editable" value="${set2.reps}" data-day="${day}" data-index="${index}" data-set="1">
+                        </td>
+                    `;
                     tbody.appendChild(row);
                 });
             });
@@ -808,6 +833,26 @@
                     const index = parseInt(e.target.getAttribute('data-index'));
                     const setIndex = parseInt(e.target.getAttribute('data-set'));
                     workoutData[day][index].sets[setIndex].reps = e.target.value;
+                    updateProgressTable();
+                } else if (e.target.classList.contains('progress-exercise-name')) {
+                    const day = e.target.getAttribute('data-day');
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    workoutData[day][index].name = e.target.value;
+                    renderExercises(day);
+                    updateProgressTable();
+                } else if (e.target.classList.contains('progress-weight')) {
+                    const day = e.target.getAttribute('data-day');
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    const setIndex = parseInt(e.target.getAttribute('data-set'));
+                    workoutData[day][index].sets[setIndex].weight = e.target.value;
+                    renderExercises(day);
+                    updateProgressTable();
+                } else if (e.target.classList.contains('progress-reps')) {
+                    const day = e.target.getAttribute('data-day');
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    const setIndex = parseInt(e.target.getAttribute('data-set'));
+                    workoutData[day][index].sets[setIndex].reps = e.target.value;
+                    renderExercises(day);
                     updateProgressTable();
                 }
             });
