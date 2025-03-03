@@ -716,6 +716,7 @@
                 const docSnap = await workoutDocRef.get();
                 if (docSnap.exists()) {
                     workoutData = docSnap.data();
+                    console.log("Data loaded from Firestore:", workoutData);
                 } else {
                     await workoutDocRef.set(workoutData);
                     console.log("Initialized Firestore with default workout data");
