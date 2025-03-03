@@ -2,7 +2,7 @@
 <html lang="en">
 <head>   
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workout Plan</title>
     <style>
         :root {
@@ -26,35 +26,34 @@
             color: var(--dark);
             line-height: 1.6;
             padding-bottom: 40px;
-            font-size: 16px;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px;
         }
 
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             text-align: center;
-            padding: 30px 15px;
+            padding: 40px 20px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             font-weight: 700;
         }
 
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -63,15 +62,14 @@
         .tab-button {
             background: var(--light);
             border: none;
-            padding: 12px 20px;
+            padding: 15px 25px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             flex-grow: 1;
             transition: all 0.3s ease;
             color: var(--dark);
             border-bottom: 3px solid transparent;
-            min-height: 48px;
         }
 
         .tab-button:hover {
@@ -87,31 +85,37 @@
         .tab-content {
             display: none;
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .tab-content.active {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
             color: var(--primary);
             border-bottom: 2px solid var(--light);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .exercise-card {
             background: white;
             border-radius: 8px;
-            margin-bottom: 10px;
-            padding: 12px;
+            margin-bottom: 15px;
+            padding: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border-left: 4px solid var(--secondary);
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .exercise-card:hover {
@@ -125,8 +129,7 @@
             align-items: center;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem;
-            min-height: 48px;
+            font-size: 1.1rem;
         }
 
         .exercise-name {
@@ -136,7 +139,7 @@
             border: none;
             background: transparent;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--dark);
             font-family: inherit;
         }
@@ -165,8 +168,22 @@
             display: flex;
             align-items: center;
             margin-bottom: 8px;
-            flex-wrap: wrap;
         }
+
+        .exercise-data:last-child {
+            margin-bottom: 0;
+        }
+
+        .exercise-data input {
+    width: auto;
+    min-width: 60px;
+    max-width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+    text-align: center;
+}
 
         .exercise-data label {
             width: 50px;
@@ -175,12 +192,10 @@
 
         .exercise-data input {
             width: 60px;
-            padding: 6px 8px;
+            padding: 4px 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             margin-right: 5px;
-            font-size: 14px;
-            min-height: 36px;
         }
 
         .exercise-data span {
@@ -203,16 +218,13 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
-            overflow-x: auto;
-            display: block;
+            margin: 20px 0;
         }
 
         th, td {
-            padding: 10px 12px;
+            padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-            font-size: 14px;
         }
 
         th {
@@ -225,18 +237,17 @@
         }
 
         .progress-heading {
-            margin-top: 30px;
+            margin-top: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .button {
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 10px 18px;
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
@@ -244,7 +255,6 @@
             align-items: center;
             gap: 6px;
             transition: all 0.3s ease;
-            min-height: 48px;
         }
 
         .button:hover {
@@ -262,16 +272,15 @@
 
         .add-exercise {
             display: block;
-            margin: 15px auto;
+            margin: 20px auto;
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
-            min-height: 48px;
         }
 
         .add-exercise:hover {
@@ -286,9 +295,8 @@
 
         .delete-exercise {
             background-color: var(--accent);
-            padding: 6px 12px;
+            padding: 4px 8px;
             font-size: 12px;
-            min-height: 36px;
         }
 
         .delete-exercise:hover {
@@ -307,56 +315,50 @@
             background-color: #f8f9fa;
         }
 
-        .progress-exercise-name, .progress-weight, .progress-reps {
-            width: 100%;
-            padding: 4px 6px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            font-size: 14px;
-            background: transparent;
-        }
+        @media print {
+            body {
+                background: white;
+            }
 
-        .progress-exercise-name:focus, .progress-weight:focus, .progress-reps:focus {
-            border-color: var(--secondary);
-            background-color: #f8f9fa;
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .tabs, .tab-button, .button, .actions, .add-exercise {
+                display: none;
+            }
+
+            .tab-content {
+                display: block !important;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            header {
+                background: none;
+                color: black;
+                padding: 20px 0;
+                box-shadow: none;
+            }
+
+            .exercise-name, .editable {
+                border: none;
+            }
         }
 
         @media (max-width: 768px) {
-            body { font-size: 14px; }
-            .container { padding: 10px; }
-            header { padding: 20px 10px; }
-            h1 { font-size: 1.75rem; }
-            .tabs { flex-direction: column; }
-            .tab-button { padding: 10px; font-size: 13px; border-bottom: 1px solid #ddd; }
-            .tab-button.active { border-bottom: 3px solid var(--secondary); }
-            .tab-content { padding: 15px; }
-            h2 { font-size: 1.25rem; }
-            .exercise-card { padding: 10px; }
-            .exercise-title { font-size: 0.9rem; }
-            .exercise-data { flex-direction: column; align-items: flex-start; }
-            .exercise-data label { width: 100%; margin-bottom: 5px; }
-            .exercise-data input { width: 100%; max-width: 100px; margin-bottom: 5px; }
-            .progress-heading { flex-direction: column; align-items: flex-start; }
-            .button-group { margin-top: 10px; display: flex; gap: 10px; }
-            table { font-size: 12px; }
-            th, td { padding: 8px 10px; }
-            .progress-exercise-name, .progress-weight, .progress-reps { font-size: 12px; padding: 3px 5px; }
-        }
+            .tabs {
+                flex-direction: column;
+            }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 1.5rem; }
-            .tab-button { font-size: 12px; }
-            .exercise-title { font-size: 0.85rem; }
-            .button, .add-exercise, .delete-exercise { font-size: 13px; }
-        }
+            .tab-button {
+                border-bottom: 1px solid #ddd;
+            }
 
-        @media print {
-            body { background: white; }
-            .container { max-width: 100%; padding: 0; }
-            .tabs, .tab-button, .button, .actions, .add-exercise { display: none; }
-            .tab-content { display: block !important; box-shadow: none; padding: 0; }
-            header { background: none; color: black; padding: 20px 0; box-shadow: none; }
-            .exercise-name, .editable { border: none; }
+            .tab-button.active {
+                border-bottom: 1px solid var(--secondary);
+            }
         }
     </style>
 </head>
@@ -372,30 +374,38 @@
             <button class="tab-button" data-tab="tuesday">Tuesday</button>
             <button class="tab-button" data-tab="thursday">Thursday</button>
             <button class="tab-button" data-tab="friday">Friday</button>
-            <button class="tab-button" data-tab="progress">Progress</button>
+            <button class="tab-button" data-tab="progress">Progress Tracking</button>
         </div>
 
         <div id="monday" class="tab-content active">
             <h2 contenteditable="true">Monday – Upper Body (2 Sets Each)</h2>
-            <div id="monday-exercises" class="exercises-container"></div>
+            <div id="monday-exercises" class="exercises-container">
+                <!-- Exercises will be loaded here -->
+            </div>
             <button class="add-exercise" data-day="monday">Add Exercise</button>
         </div>
 
         <div id="tuesday" class="tab-content">
             <h2 contenteditable="true">Tuesday – Leg Day (1 Max Effort Set Each)</h2>
-            <div id="tuesday-exercises" class="exercises-container"></div>
+            <div id="tuesday-exercises" class="exercises-container">
+                <!-- Exercises will be loaded here -->
+            </div>
             <button class="add-exercise" data-day="tuesday">Add Exercise</button>
         </div>
 
         <div id="thursday" class="tab-content">
             <h2 contenteditable="true">Thursday – Upper Body (2 Sets Each)</h2>
-            <div id="thursday-exercises" class="exercises-container"></div>
+            <div id="thursday-exercises" class="exercises-container">
+                <!-- Exercises will be loaded here -->
+            </div>
             <button class="add-exercise" data-day="thursday">Add Exercise</button>
         </div>
 
         <div id="friday" class="tab-content">
             <h2 contenteditable="true">Friday – Leg Day (Same as Tuesday, 1 Max Effort Set Each)</h2>
-            <div id="friday-exercises" class="exercises-container"></div>
+            <div id="friday-exercises" class="exercises-container">
+                <!-- Exercises will be loaded here -->
+            </div>
             <button class="add-exercise" data-day="friday">Add Exercise</button>
         </div>
 
@@ -421,20 +431,24 @@
                     </button>
                 </div>
             </div>
+
             <table id="progress-table">
                 <thead>
                     <tr>
                         <th>Exercise</th>
-                        <th>Set 1</th>
-                        <th>Set 2</th>
+                        <th>Set 1 (Weight x Reps)</th>
+                        <th>Set 2 (Weight x Reps)</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <!-- Progress data will be populated here -->
+                </tbody>
             </table>
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        // Workout data structure
         let workoutData = {
             monday: [
                 {
@@ -688,9 +702,11 @@
             ]
         };
 
+        // Function to create exercise card
         function createExerciseCard(exercise, index, day) {
             const highlightClass = exercise.highlight ? 'highlight' : '';
             const checkmarkHtml = exercise.checkmark ? `<span class="checkmark">✅</span>` : '';
+
             let setsHtml = '';
             for (let i = 0; i < exercise.sets.length; i++) {
                 setsHtml += `
@@ -732,83 +748,148 @@
             return card;
         }
 
+        // Function to render exercises for a specific day
         function renderExercises(day) {
             const container = document.getElementById(`${day}-exercises`);
             container.innerHTML = '';
+
             workoutData[day].forEach((exercise, index) => {
                 const card = createExerciseCard(exercise, index, day);
                 container.appendChild(card);
             });
         }
 
+        // Function to update progress table
         function updateProgressTable() {
             const tbody = document.querySelector('#progress-table tbody');
             tbody.innerHTML = '';
+
+            // Add day headers and exercises for each day
             Object.keys(workoutData).forEach(day => {
+                // Create day header
                 const dayHeader = document.createElement('tr');
-                dayHeader.innerHTML = `<td colspan="3" style="background-color: #f5f7fa; font-weight: 600;">${day.charAt(0).toUpperCase() + day.slice(1)}</td>`;
+                dayHeader.innerHTML = `<td colspan="3" style="background-color: #f5f7fa; font-weight: 600;">${day.charAt(0).toUpperCase() + day.slice(1)} - ${document.querySelector(`#${day} h2`).textContent}</td>`;
                 tbody.appendChild(dayHeader);
 
-                workoutData[day].forEach((exercise, index) => {
+                // Add exercises
+                workoutData[day].forEach(exercise => {
                     const row = document.createElement('tr');
-                    const set1 = exercise.sets[0] || { weight: "N/A", reps: "N/A" };
-                    const set2 = exercise.sets[1] || { weight: "N/A", reps: "N/A" };
+                    let set1 = exercise.sets[0] ? `${exercise.sets[0].weight} x ${exercise.sets[0].reps}` : 'N/A';
+                    let set2 = exercise.sets[1] ? `${exercise.sets[1].weight} x ${exercise.sets[1].reps}` : 'N/A';
+
                     row.innerHTML = `
-                        <td><input type="text" class="progress-exercise-name editable" value="${exercise.name}" data-day="${day}" data-index="${index}"></td>
-                        <td>
-                            <input type="text" class="progress-weight editable" value="${set1.weight}" data-day="${day}" data-index="${index}" data-set="0"> x 
-                            <input type="text" class="progress-reps editable" value="${set1.reps}" data-day="${day}" data-index="${index}" data-set="0">
-                        </td>
-                        <td>
-                            <input type="text" class="progress-weight editable" value="${set2.weight}" data-day="${day}" data-index="${index}" data-set="1"> x 
-                            <input type="text" class="progress-reps editable" value="${set2.reps}" data-day="${day}" data-index="${index}" data-set="1">
-                        </td>
+                        <td>${exercise.name}</td>
+                        <td>${set1}</td>
+                        <td>${set2}</td>
                     `;
                     tbody.appendChild(row);
                 });
             });
         }
 
+        // Initialize the page
         function init() {
+            // Load from localStorage if available
             const savedData = localStorage.getItem('workoutData');
-            if (savedData) workoutData = JSON.parse(savedData);
+            if (savedData) {
+                workoutData = JSON.parse(savedData);
+            }
+
+            // Render exercises for each day
             renderExercises('monday');
             renderExercises('tuesday');
             renderExercises('thursday');
             renderExercises('friday');
             updateProgressTable();
+
+
+            // Render exercises for each day
+            renderExercises('monday');
+            renderExercises('tuesday');
+            renderExercises('thursday');
+            renderExercises('friday');
+            updateProgressTable();
+
+            // Set up event listeners
             setupEventListeners();
         }
 
+        // Set up event listeners
         function setupEventListeners() {
+            // Tab functionality
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.addEventListener('click', () => {
-                    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                    document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+
+                    // Hide all tab contents
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+
+                    // Deactivate all buttons
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+
+                    // Show the selected tab content
+                    document.getElementById(tabId).classList.add('active');
+
+                    // Activate the clicked button
                     button.classList.add('active');
                 });
             });
 
-            document.getElementById('save-data').addEventListener('click', () => {
+            // Save Data
+            document.getElementById('save-data').addEventListener('click', function() {
                 localStorage.setItem('workoutData', JSON.stringify(workoutData));
-                alert('Workout plan saved!');
+                alert('Workout plan saved successfully!');
             });
 
+            // Add exercise buttons
             document.querySelectorAll('.add-exercise').forEach(button => {
-                button.addEventListener('click', () => {
-                    const day = button.getAttribute('data-day');
-                    workoutData[day].push({ name: "New Exercise", highlight: false, checkmark: false, sets: [{ weight: "0", reps: "0" }, { weight: "0", reps: "0" }] });
+                button.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day');
+                    workoutData[day].push({
+                        name: "New Exercise",
+                        highlight: false,
+                        checkmark: false,
+                        sets: [
+                            { weight: "0", reps: "0" },
+                            { weight: "0", reps: "0" }
+                        ]
+                    });
                     renderExercises(day);
                     updateProgressTable();
                 });
             });
 
-            document.addEventListener('click', (e) => {
+
+            // Add exercise buttons
+            document.querySelectorAll('.add-exercise').forEach(button => {
+                button.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day');
+                    workoutData[day].push({
+                        name: "New Exercise",
+                        highlight: false,
+                        checkmark: false,
+                        sets: [
+                            { weight: "0", reps: "0" },
+                            { weight: "0", reps: "0" }
+                        ]
+                    });
+                    renderExercises(day);
+                    updateProgressTable();
+                });
+            });
+
+            // Setup event delegation for all dynamic elements
+            document.addEventListener('click', function(e) {
+                // Delete exercise
                 if (e.target.classList.contains('delete-exercise')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
-                    if (confirm('Delete this exercise?')) {
+
+                    if (confirm('Are you sure you want to delete this exercise?')) {
                         workoutData[day].splice(index, 1);
                         renderExercises(day);
                         updateProgressTable();
@@ -816,53 +897,300 @@
                 }
             });
 
-            document.addEventListener('change', (e) => {
+            // Handle input changes for exercise names
+            document.addEventListener('change', function(e) {
                 if (e.target.classList.contains('exercise-name')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
                     workoutData[day][index].name = e.target.value;
                     updateProgressTable();
-                } else if (e.target.classList.contains('weight-input')) {
+                }
+                else if (e.target.classList.contains('weight-input')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
                     const setIndex = parseInt(e.target.getAttribute('data-set'));
                     workoutData[day][index].sets[setIndex].weight = e.target.value;
                     updateProgressTable();
-                } else if (e.target.classList.contains('reps-input')) {
+                }
+                else if (e.target.classList.contains('reps-input')) {
                     const day = e.target.getAttribute('data-day');
                     const index = parseInt(e.target.getAttribute('data-index'));
                     const setIndex = parseInt(e.target.getAttribute('data-set'));
                     workoutData[day][index].sets[setIndex].reps = e.target.value;
-                    updateProgressTable();
-                } else if (e.target.classList.contains('progress-exercise-name')) {
-                    const day = e.target.getAttribute('data-day');
-                    const index = parseInt(e.target.getAttribute('data-index'));
-                    workoutData[day][index].name = e.target.value;
-                    renderExercises(day);
-                    updateProgressTable();
-                } else if (e.target.classList.contains('progress-weight')) {
-                    const day = e.target.getAttribute('data-day');
-                    const index = parseInt(e.target.getAttribute('data-index'));
-                    const setIndex = parseInt(e.target.getAttribute('data-set'));
-                    workoutData[day][index].sets[setIndex].weight = e.target.value;
-                    renderExercises(day);
-                    updateProgressTable();
-                } else if (e.target.classList.contains('progress-reps')) {
-                    const day = e.target.getAttribute('data-day');
-                    const index = parseInt(e.target.getAttribute('data-index'));
-                    const setIndex = parseInt(e.target.getAttribute('data-set'));
-                    workoutData[day][index].sets[setIndex].reps = e.target.value;
-                    renderExercises(day);
                     updateProgressTable();
                 }
             });
 
+            // Handle contenteditable changes for day titles
             document.querySelectorAll('[contenteditable="true"]').forEach(element => {
-                element.addEventListener('blur', updateProgressTable);
+                element.addEventListener('blur', function() {
+                    updateProgressTable();
+                });
             });
         }
 
+        // Initialize the app when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
+
+        // Function to adjust input width dynamically
+function adjustInputWidth(input) {
+    input.style.width = "auto"; // Reset width to auto
+    input.style.width = (input.scrollWidth) + "px"; // Set width based on content
+}
+
+// Apply resizing when typing
+document.addEventListener("input", function(e) {
+    if (e.target.classList.contains("weight-input") || e.target.classList.contains("reps-input")) {
+        adjustInputWidth(e.target);
+    }
+});
+
+
+
     </script>
+        <script type="module">
+    // Import Firebase and Firestore functions
+    import { db } from './firebase.js';
+    import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+
+    let workoutData = {
+        monday: [
+            { name: "Dumbbell Chest Press (Strength + Size)", highlight: false, checkmark: false, sets: [{ weight: "30kg", reps: "6" }, { weight: "25kg", reps: "8" }] },
+            { name: "Cable Fly (Chest Isolation)", highlight: false, checkmark: false, sets: [{ weight: "25kg", reps: "8" }, { weight: "N/A", reps: "N/A" }] },
+            { name: "Lat Pulldown (Straight Handle, Lat-Focused) (Back Width)", highlight: false, checkmark: false, sets: [{ weight: "73.4kg", reps: "8" }, { weight: "62kg", reps: "8" }] },
+            { name: "T-Bar Row (Back Thickness)", highlight: false, checkmark: false, sets: [{ weight: "45kg", reps: "6" }, { weight: "40kg", reps: "6" }] },
+            { name: "Overhead Tricep Extensions (Cable or Dumbbell) (Long Head Focus – Replaces Handle Pushdown)", highlight: true, checkmark: true, sets: [{ weight: "20kg", reps: "6" }, { weight: "15kg", reps: "6" }] },
+            { name: "Single Arm Tricep Pushdown (Lateral Head Focus)", highlight: false, checkmark: false, sets: [{ weight: "20kg", reps: "10" }, { weight: "N/A", reps: "N/A" }] },
+            { name: "Smith Machine Shoulder Press OR Dumbbell Shoulder Press (Your Choice – Shoulder Strength)", highlight: false, checkmark: false, sets: [{ weight: "25kg", reps: "10" }, { weight: "22.5kg", reps: "6" }] },
+            { name: "Lateral Raises (For Shoulder Width – Stays in both Upper Days)", highlight: true, checkmark: true, sets: [{ weight: "12.5kg", reps: "8" }, { weight: "10kg", reps: "10" }] },
+            { name: "Dumbbell Curl (Biceps Strength)", highlight: false, checkmark: false, sets: [{ weight: "17.5kg", reps: "8" }, { weight: "N/A", reps: "N/A" }] },
+            { name: "Hammer Curl (Biceps + Forearm Strength)", highlight: false, checkmark: false, sets: [{ weight: "20kg", reps: "8" }, { weight: "N/A", reps: "N/A" }] }
+        ],
+        tuesday: [
+            { name: "Leg Extension (Pre-Exhaust for Quads)", highlight: false, checkmark: false, sets: [{ weight: "60kg", reps: "8" }] },
+            { name: "Squats (Back Squat or Hack Squat Machine) (Strength + Size)", highlight: false, checkmark: false, sets: [{ weight: "35kg each side", reps: "6" }] },
+            { name: "Leg Press Machine (Quad + Glute Development)", highlight: false, checkmark: false, sets: [{ weight: "70kg", reps: "8" }] },
+            { name: "Hamstring Curl Machine (Hamstring Isolation)", highlight: false, checkmark: false, sets: [{ weight: "55kg", reps: "8" }] },
+            { name: "Standing Calf Raises (Calves)", highlight: false, checkmark: false, sets: [{ weight: "30kg each side", reps: "12" }] }
+        ],
+        thursday: [
+            { name: "Incline Smith Machine Press (Upper Chest Strength)", highlight: false, checkmark: false, sets: [{ weight: "27.5kg each side", reps: "6" }, { weight: "20kg", reps: "8, 3 sec pause" }] },
+            { name: "Standing Multi Flight Machine (Low to High Fly for Chest) (Chest Isolation)", highlight: false, checkmark: false, sets: [{ weight: "74kg", reps: "6" }, { weight: "N/A", reps: "N/A" }] },
+            { name: "Lat Pulldown (Straight Handle, Lat-Focused) (Back Width)", highlight: false, checkmark: false, sets: [{ weight: "73.4kg", reps: "8" }, { weight: "62kg", reps: "8" }] },
+            { name: "Seated Row (Mag Handle, Upper Back Focused) (Back Thickness)", highlight: false, checkmark: false, sets: [{ weight: "70kg", reps: "6" }, { weight: "60kg", reps: "8" }] },
+            { name: "Smith Machine Close Grip Press (Triceps Strength)", highlight: false, checkmark: false, sets: [{ weight: "25kg each side", reps: "7" }, { weight: "22.5kg", reps: "6, 2 sec pause" }] },
+            { name: "Single Arm Tricep Pushdown (Stays for tricep frequency.)", highlight: true, checkmark: true, sets: [{ weight: "20kg each arm", reps: "10" }, { weight: "N/A", reps: "N/A" }] },
+            { name: "Preacher Curl Machine (Biceps Isolation)", highlight: false, checkmark: false, sets: [{ weight: "50kg", reps: "10" }, { weight: "N/A", reps: "N/A" }] },
+            { name: "Lateral Raises (For Shoulder Width – Stays in both Upper Days.)", highlight: true, checkmark: true, sets: [{ weight: "12.5kg", reps: "8" }, { weight: "10kg", reps: "10" }] }
+        ],
+        friday: [
+            { name: "Leg Extension", highlight: false, checkmark: false, sets: [{ weight: "60kg", reps: "8" }] },
+            { name: "Squats (Back Squat or Hack Squat Machine)", highlight: false, checkmark: false, sets: [{ weight: "35kg each side", reps: "6" }] },
+            { name: "Leg Press Machine", highlight: false, checkmark: false, sets: [{ weight: "70kg", reps: "8" }] },
+            { name: "Hamstring Curl Machine", highlight: false, checkmark: false, sets: [{ weight: "55kg", reps: "8" }] },
+            { name: "Standing Calf Raises", highlight: false, checkmark: false, sets: [{ weight: "30kg each side", reps: "12" }] }
+        ]
+    };
+
+    // Reference to the Firestore document
+    const workoutDocRef = doc(db, "workouts", "userWorkout");
+
+    // Load data from Firestore on initialization
+    async function loadFromFirestore() {
+        const docSnap = await getDoc(workoutDocRef);
+        if (docSnap.exists()) {
+            workoutData = docSnap.data();
+        } else {
+            // If no data exists, initialize Firestore with default workoutData
+            await setDoc(workoutDocRef, workoutData);
+        }
+    }
+
+    function createExerciseCard(exercise, index, day) {
+        const highlightClass = exercise.highlight ? 'highlight' : '';
+        const checkmarkHtml = exercise.checkmark ? `<span class="checkmark">✅</span>` : '';
+        let setsHtml = '';
+        for (let i = 0; i < exercise.sets.length; i++) {
+            setsHtml += `
+            <div class="exercise-data">
+                <label>Set ${i+1}:</label>
+                <input type="text" class="weight-input" value="${exercise.sets[i].weight}" data-day="${day}" data-index="${index}" data-set="${i}">
+                <span>x</span>
+                <input type="text" class="reps-input" value="${exercise.sets[i].reps}" data-day="${day}" data-index="${index}" data-set="${i}">
+                <span>reps</span>
+            </div>`;
+        }
+
+        const card = document.createElement('div');
+        card.className = `exercise-card ${highlightClass}`;
+        card.setAttribute('data-day', day);
+        card.setAttribute('data-index', index);
+        card.innerHTML = `
+            <div class="exercise-title">
+                <input type="text" class="exercise-name" value="${exercise.name}" data-day="${day}" data-index="${index}">
+                ${checkmarkHtml}
+                <span class="arrow">▼</span>
+            </div>
+            <div class="exercise-details">
+                ${setsHtml}
+                <div class="actions">
+                    <button class="button delete-exercise" data-day="${day}" data-index="${index}">Delete</button>
+                </div>
+            </div>
+        `;
+
+        card.querySelector('.exercise-title').addEventListener('click', function(e) {
+            if (e.target.classList.contains('exercise-name')) return;
+            const details = this.nextElementSibling;
+            const arrow = this.querySelector('.arrow');
+            details.classList.toggle('show');
+            arrow.classList.toggle('down');
+        });
+
+        return card;
+    }
+
+    function renderExercises(day) {
+        const container = document.getElementById(`${day}-exercises`);
+        container.innerHTML = '';
+        workoutData[day].forEach((exercise, index) => {
+            const card = createExerciseCard(exercise, index, day);
+            container.appendChild(card);
+        });
+    }
+
+    function updateProgressTable() {
+        const tbody = document.querySelector('#progress-table tbody');
+        tbody.innerHTML = '';
+        Object.keys(workoutData).forEach(day => {
+            const dayHeader = document.createElement('tr');
+            dayHeader.innerHTML = `<td colspan="3" style="background-color: #f5f7fa; font-weight: 600;">${day.charAt(0).toUpperCase() + day.slice(1)}</td>`;
+            tbody.appendChild(dayHeader);
+
+            workoutData[day].forEach((exercise, index) => {
+                const row = document.createElement('tr');
+                const set1 = exercise.sets[0] || { weight: "N/A", reps: "N/A" };
+                const set2 = exercise.sets[1] || { weight: "N/A", reps: "N/A" };
+                row.innerHTML = `
+                    <td><input type="text" class="progress-exercise-name editable" value="${exercise.name}" data-day="${day}" data-index="${index}"></td>
+                    <td>
+                        <input type="text" class="progress-weight editable" value="${set1.weight}" data-day="${day}" data-index="${index}" data-set="0"> x
+                        <input type="text" class="progress-reps editable" value="${set1.reps}" data-day="${day}" data-index="${index}" data-set="0">
+                    </td>
+                    <td>
+                        <input type="text" class="progress-weight editable" value="${set2.weight}" data-day="${day}" data-index="${index}" data-set="1"> x
+                        <input type="text" class="progress-reps editable" value="${set2.reps}" data-day="${day}" data-index="${index}" data-set="1">
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
+    }
+
+    async function init() {
+        // Load data from Firestore instead of localStorage
+        await loadFromFirestore();
+        renderExercises('monday');
+        renderExercises('tuesday');
+        renderExercises('thursday');
+        renderExercises('friday');
+        updateProgressTable();
+        setupEventListeners();
+    }
+
+    function setupEventListeners() {
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+                button.classList.add('active');
+            });
+        });
+
+        document.getElementById('save-data').addEventListener('click', async () => {
+            // Save to Firestore instead of localStorage
+            await setDoc(workoutDocRef, workoutData);
+            alert('Workout plan saved to Firestore!');
+        });
+
+        document.querySelectorAll('.add-exercise').forEach(button => {
+            button.addEventListener('click', async () => {
+                const day = button.getAttribute('data-day');
+                workoutData[day].push({ name: "New Exercise", highlight: false, checkmark: false, sets: [{ weight: "0", reps: "0" }, { weight: "0", reps: "0" }] });
+                renderExercises(day);
+                updateProgressTable();
+                await updateDoc(workoutDocRef, workoutData);
+            });
+        });
+
+        document.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('delete-exercise')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                if (confirm('Delete this exercise?')) {
+                    workoutData[day].splice(index, 1);
+                    renderExercises(day);
+                    updateProgressTable();
+                    await updateDoc(workoutDocRef, workoutData);
+                }
+            }
+        });
+
+        document.addEventListener('change', async (e) => {
+            if (e.target.classList.contains('exercise-name')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                workoutData[day][index].name = e.target.value;
+                updateProgressTable();
+                await updateDoc(workoutDocRef, workoutData);
+            } else if (e.target.classList.contains('weight-input')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                const setIndex = parseInt(e.target.getAttribute('data-set'));
+                workoutData[day][index].sets[setIndex].weight = e.target.value;
+                updateProgressTable();
+                await updateDoc(workoutDocRef, workoutData);
+            } else if (e.target.classList.contains('reps-input')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                const setIndex = parseInt(e.target.getAttribute('data-set'));
+                workoutData[day][index].sets[setIndex].reps = e.target.value;
+                updateProgressTable();
+                await updateDoc(workoutDocRef, workoutData);
+            } else if (e.target.classList.contains('progress-exercise-name')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                workoutData[day][index].name = e.target.value;
+                renderExercises(day);
+                await updateDoc(workoutDocRef, workoutData);
+            } else if (e.target.classList.contains('progress-weight')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                const setIndex = parseInt(e.target.getAttribute('data-set'));
+                workoutData[day][index].sets[setIndex].weight = e.target.value;
+                renderExercises(day);
+                await updateDoc(workoutDocRef, workoutData);
+            } else if (e.target.classList.contains('progress-reps')) {
+                const day = e.target.getAttribute('data-day');
+                const index = parseInt(e.target.getAttribute('data-index'));
+                const setIndex = parseInt(e.target.getAttribute('data-set'));
+                workoutData[day][index].sets[setIndex].reps = e.target.value;
+                renderExercises(day);
+                await updateDoc(workoutDocRef, workoutData);
+            }
+        });
+
+        document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+            element.addEventListener('blur', async () => {
+                updateProgressTable();
+                await updateDoc(workoutDocRef, workoutData);
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+</script>
+    
 </body>
 </html>
