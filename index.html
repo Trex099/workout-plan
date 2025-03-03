@@ -456,7 +456,6 @@
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore(app);
 
-        // Workout data structure
         let workoutData = {
             monday: [
                 {
@@ -846,7 +845,6 @@
                 });
             });
 
-            // Duplicate listener from original (restored for line count)
             document.querySelectorAll('.add-exercise').forEach(button => {
                 button.addEventListener('click', async () => {
                     const day = button.getAttribute('data-day');
